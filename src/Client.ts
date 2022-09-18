@@ -1,6 +1,6 @@
 const DEFAULT_HTTP_HEADERS: Record<string, string> = {
   'content-type': 'application/json',
-}
+};
 
 export class Client {
   private prefixUrl: URL;
@@ -19,7 +19,7 @@ export class Client {
       }),
       headers: {
         ...DEFAULT_HTTP_HEADERS,
-      }
+      },
     });
 
     const json = await response.json();
@@ -28,7 +28,7 @@ export class Client {
       return json as Linx.Link;
     }
 
-    const message = (json as { message: string; })?.message;
+    const message = (json as { message: string })?.message;
 
     // As of today we don't have enough use cases to implement
     // dedicated errors. Instead we just take the error message

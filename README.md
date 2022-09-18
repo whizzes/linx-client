@@ -14,27 +14,27 @@ npm install @whizzes/linx
 ## Usage
 
 ```typescript
-  import { Client } from '@whizzes/linx/browser';
+import { Client } from '@whizzes/linx/browser';
 
-  import type { Linx } from '@whizzes/linx/browser';
+import type { Linx } from '@whizzes/linx/browser';
 
-  // The URL where Linx is hosted
-  const linxServer = 'http://localhost:3000';
+// The URL where Linx is hosted
+const linxServer = 'http://localhost:3000';
 
-  // Create a Client instance
-  const linx = new Client(linxServer);
+// Create a Client instance
+const linx = new Client(linxServer);
 
-  let url = '';
-  let error = null;
-  let link: Linx.Link | null = null;
+let url = '';
+let error = null;
+let link: Linx.Link | null = null;
 
-  async function createLink(): Promise<void> {
-    try {
-      link = await linx.new(url);
-    } catch (err) {
-      error = err.toString();
-    }
+async function createLink(): Promise<void> {
+  try {
+    link = await linx.new(url);
+  } catch (err) {
+    error = err.toString();
   }
+}
 ```
 
 ## Contributions

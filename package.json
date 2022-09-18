@@ -7,7 +7,9 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "check": "tsc --notEmit"
+    "check": "tsc --notEmit",
+    "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. . && eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -27,7 +29,11 @@
   "homepage": "https://github.com/whizzes/linx-client#readme",
   "devDependencies": {
     "@types/node": "^18.7.18",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
     "esbuild": "^0.15.7",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1",
     "rollup": "^2.79.0",
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-esbuild": "^4.10.1",

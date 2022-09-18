@@ -1,4 +1,7 @@
+.eslintignore
+.eslintrc
 .github
+.prettierrc
 src
 tsconfig.json
 rollup.config.js

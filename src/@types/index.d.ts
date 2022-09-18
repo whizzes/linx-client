@@ -4,5 +4,5 @@ declare namespace Linx {
     hash: string;
     originalUrl: string;
     expiresAt: Date;
-  }
+  };
 }

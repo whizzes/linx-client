@@ -3,19 +3,21 @@ import esbuild from 'rollup-plugin-esbuild';
 
 const name = require('./package.json').main.replace(/\.js$/, '');
 
-const bundle = config => ({
+const bundle = (config) => ({
   ...config,
   input: 'src/index.ts',
-  external: id => !/^[./]/.test(id),
+  external: (id) => !/^[./]/.test(id),
 });
 
 export default [
   bundle({
-    plugins: [esbuild({
-      sourceMap: true,
-      minify: true,
-      platform: 'browser',
-    })],
+    plugins: [
+      esbuild({
+        sourceMap: true,
+        minify: true,
+        platform: 'browser',
+      }),
+    ],
     output: [
       {
         file: `${name}.js`,
