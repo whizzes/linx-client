@@ -1,9 +1,12 @@
 {
   "name": "@whizzes/linx",
-  "version": "v0.1.2-beta",
+  "version": "v0.1.3-beta",
   "description": "API Client for Linx",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.node.json && tsc -p tsconfig.browser.json",
+    "build": "rollup -c",
     "check": "tsc --notEmit"
   },
   "repository": {
@@ -32,6 +35,10 @@
   },
   "devDependencies": {
     "@types/node": "^18.7.18",
+    "esbuild": "^0.15.7",
+    "rollup": "^2.79.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-esbuild": "^4.10.1",
     "typescript": "^4.8.3"
   }
 }

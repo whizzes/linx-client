@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "./browser",
-    "target": "es5",
-    "module": "umd",
+    "outDir": "./dist",
     "moduleResolution": "node",
-    "lib": ["es2016", "dom", "es5"],
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["es5", "es6", "dom"],
     "removeComments": true,
     "declaration": true,
     "strict": true
