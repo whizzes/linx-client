@@ -1,6 +1,6 @@
 {
   "name": "@whizzes/linx",
-  "version": "v0.1.0-beta",
+  "version": "v0.1.1-beta",
   "description": "API Client for Linx",
   "scripts": {
     "build": "tsc -p tsconfig.node.json && tsc -p tsconfig.browser.json",
@@ -11,8 +11,8 @@
     "url": "git+https://github.com/whizzes/linx-client.git"
   },
   "files": [
-    "dist",
-    "dist.browser"
+    "browser",
+    "node"
   ],
   "keywords": [
     "linx",
