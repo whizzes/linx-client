@@ -1,4 +1,5 @@
 import type { Link } from '@whizzes/linx';
+import { APIError } from './errors/APIError';
 
 const DEFAULT_HTTP_HEADERS: Record<string, string> = {
   'content-type': 'application/json',
@@ -55,6 +56,6 @@ export class Client {
     // As of today we don't have enough use cases to implement
     // dedicated errors. Instead we just take the error message
     // and provide it as a `Error.message` value.
-    throw new Error(message);
+    throw new APIError(message, response.status);
   }
 }
