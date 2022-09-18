@@ -1,6 +1,6 @@
 {
   "name": "@whizzes/linx",
-  "version": "v0.1.6-beta",
+  "version": "v0.1.7-beta",
   "description": "API Client for Linx",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

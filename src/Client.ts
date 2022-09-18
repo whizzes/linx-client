@@ -25,7 +25,7 @@ export class Client {
   }
 
   private uri(path: string): string {
-    return `${this.prefixUrl.toString()}/${path}`;
+    return `${this.prefixUrl.toString()}${path}`;
   }
 
   private async post<T, U>(
@@ -43,7 +43,7 @@ export class Client {
       body: JSON.stringify(body),
     };
 
-    const response = await fetch(this.uri('new'), extendedOptions);
+    const response = await fetch(this.uri(path), extendedOptions);
     const responseBody = await response.json();
 
     if (response.ok) {
