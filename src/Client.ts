@@ -1,3 +1,5 @@
+import type { Link } from '@whizzes/linx';
+
 const DEFAULT_HTTP_HEADERS: Record<string, string> = {
   'content-type': 'application/json',
 };
@@ -9,34 +11,50 @@ export class Client {
     this.prefixUrl = prefixUrl;
   }
 
-  public async new(originalUrl: string): Promise<Linx.Link> {
-    // Validates `originalUrl` to be a valid URL string
+  /**
+   * Creates a new Link through Linx with the provided URL.
+   *
+   * Internally validates the `originalUrl` to be a valid URL instance.
+   */
+  public async new(originalUrl: string): Promise<Link> {
     new URL(originalUrl);
 
-    const response = await fetch(this.uri('new'), {
-      body: JSON.stringify({
-        url: originalUrl,
-      }),
+    return await this.post('new', {
+      url: originalUrl,
+    });
+  }
+
+  private uri(path: string): string {
+    return `${this.prefixUrl.toString()}/${path}`;
+  }
+
+  private async post<T, U>(
+    path: string,
+    body: T,
+    options: RequestInit = {},
+  ): Promise<U> {
+    const extendedOptions: RequestInit = {
+      ...options,
       headers: {
         ...DEFAULT_HTTP_HEADERS,
+        ...options.headers,
       },
-    });
+      method: 'POST',
+      body: JSON.stringify(body),
+    };
 
-    const json = await response.json();
+    const response = await fetch(this.uri('new'), extendedOptions);
+    const responseBody = await response.json();
 
     if (response.ok) {
-      return json as Linx.Link;
+      return responseBody as U;
     }
 
-    const message = (json as { message: string })?.message;
+    const message = (responseBody as { message: string })?.message;
 
     // As of today we don't have enough use cases to implement
     // dedicated errors. Instead we just take the error message
     // and provide it as a `Error.message` value.
     throw new Error(message);
-  }
-
-  private uri(path: string): string {
-    return `${this.prefixUrl.toString()}/${path}`;
   }
 }
