@@ -1,28 +1,27 @@
-import ky from 'ky-universal';
-
-import type { KyInstance } from 'ky/distribution/types/ky';
+const DEFAULT_HTTP_HEADERS: Record<string, string> = {
+  'content-type': 'application/json',
+}
 
 export class Client {
-  private client: KyInstance;
+  private prefixUrl: URL;
 
   constructor(prefixUrl: URL) {
-    this.client = ky.create({
-      prefixUrl: prefixUrl,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    this.prefixUrl = prefixUrl;
   }
 
   public async new(originalUrl: string): Promise<Linx.Link> {
     // Validates `originalUrl` to be a valid URL string
     new URL(originalUrl);
 
-    const response = await this.client.post('new', {
+    const response = await fetch(this.uri('new'), {
       body: JSON.stringify({
         url: originalUrl,
       }),
+      headers: {
+        ...DEFAULT_HTTP_HEADERS,
+      }
     });
+
     const json = await response.json();
 
     if (response.ok) {
@@ -35,5 +34,9 @@ export class Client {
     // dedicated errors. Instead we just take the error message
     // and provide it as a `Error.message` value.
     throw new Error(message);
+  }
+
+  private uri(path: string): string {
+    return `${this.prefixUrl.toString()}/${path}`;
   }
 }
