@@ -1,6 +1,6 @@
 <div>
   <h1 align="center">Linx</h1>
-  <h4 align="center">Browser and NodeJS API Client for Linx</h4>
+  <h4 align="center">API Client for Linx</h4>
 </div>
 
 > Still under early development. The underlying server is available on [whizzes/linx][1].

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "./dist",
+    "outDir": "dist",
     "moduleResolution": "node",
     "target": "esnext",
     "module": "commonjs",

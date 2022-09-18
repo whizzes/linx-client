@@ -1,10 +1,8 @@
 {
   "name": "@whizzes/linx",
-  "version": "v0.1.3-beta",
+  "version": "v0.1.4-beta",
   "description": "API Client for Linx",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "typings": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "check": "tsc --notEmit"
